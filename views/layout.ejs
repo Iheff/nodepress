@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css?v=<%= now %>' />
+    <script src='/javascripts/kon.js' type='text/javascript'></script>
+
+
+  </head>
+  <body>
+  	<div class="container-fluid" id="sitebox">
+  		<%- partial('site-header.ejs') %>
+  		<div class="row-fluid">
+			<div class="span3 left-col" id="left">
+			<%- partial('left.ejs') %>
+			</div>
+
+			<div class="span7 center-col" id="center">
+				<div id="content" class="inner">
+	    			<%- body %>
+	    		</div>
+			</div>
+	  		<div class="span2 right-col" id="right">
+	  			<%- partial('right.ejs') %>
+  			</div>
+  		</div>
+	</div>
+	<div class="container-fluid" id="footer-row">
+		<%- partial('site-footer.ejs') %>
+	</div>
+  </body>
+  <script type="text/javascript">
+var kon = function() {alert("You are l337");}
+var egg = new Konami(kon);
+</script>
+</html>
+
+<!--
+_____   __     _________    ________                           
+___  | / /___________  /_______  __ \__________________________
+__   |/ /_  __ \  __  /_  _ \_  /_/ /_  ___/  _ \_  ___/_  ___/
+_  /|  / / /_/ / /_/ / /  __/  ____/_  /   /  __/(__  )_(__  ) 
+/_/ |_/  \____/\__,_/  \___//_/     /_/    \___//____/ /____/  
+   
+Written By Steffen Cope.
+A Node Front End to Worpress dramtically increasing performance.
+-->

@@ -1,0 +1,36 @@
+<div class="latest_posts">
+	<% for(var i=0; i<api.posts.length; i++) {%>
+	<div class="post post-<%= api.posts[i].id %> row-fluid">
+	<%
+	var img = "false";
+	if(api.posts[i].attachments.length > 0 ) {
+		if("images" in api.posts[i].attachments[0]) {
+			if( api.posts[i].attachments[0].images.thumbnail.url.length ){ 
+			    var img = '<img src="+api.posts[i].attachments[0].images.thumbnail.url+" />';						
+			} 
+		} 
+	} 
+	if (img != "false"){ %>
+		<div class="span4"> 
+			<img class="img" src="<%= api.posts[i].attachments[0].images.thumbnail.url %>"/>
+		</div>
+		<div class="span8">
+	<% } else { %>
+		<div class="span12">
+	<% } %>
+	<% if( api.posts[i].categories.length ){ %>
+				<% var category_slug = api.posts[i].categories[0].slug %>
+		<% } %>
+		<h3><a href="/article/<%= api.posts[i].slug %>">
+			<%-  DeEntify(api.posts[i].title) %>
+		</a>
+		</h3>						
+		<%- DeEntify(api.posts[i].excerpt) %>
+		<br class="cb" />
+	</div>
+	</div>
+	<% } %>
+	<div class="pager">
+	<%- pager(api.pages, api.count_total, api.count, page) %>
+	</div>
+</div>

@@ -1,0 +1,112 @@
+/* EJS Helpers by Gabriel Scholz
+See License and up to date script at www.github.com/garbles/ejs-helpers */
+
+stylesheet_link_tag = function() {
+	var links = '';
+	for(i=0;i<arguments.length;i++) {
+		links += '<link href="../'+ arguments[i] +'.css" rel="stylesheet" type="text/css">';
+	}
+	return links;
+}
+
+javascript_link_tag = function() {
+	var links = '';
+	for(i=0;i<arguments.length;i++) {
+		links += '<script src="../'+ arguments[i] +'.js" type="text/javascript"></script>';
+	}
+	return links;
+}
+
+link_to = function(str, link, options) {
+	return '<a href="' + link + '"' + handleHTMLOptions(options) + '>' + str + '</a>';
+}
+
+image_tag = function(str, options) {
+	return '<img src="' + str + '"' + handleHTMLOptions(options) + '/>';
+}
+
+DeEntify = function(str) {
+	return str.replace('&#8211;','-');
+}
+getSkipLinks = function(previous_url, next_url, hosts){
+	//*Just for my crazy subdomain routing setup*//
+
+	if(hosts.new == "iheff.com:4321" ){
+	hosts.new = "alpha.iheff.com" ;
+	}
+
+	//*END*//
+	html ="";
+	html = html +"";
+	if(previous_url == null){
+	//html = html +"no previous link <br/>";
+	} else{
+	html = html +'<a href="http://'+previous_url.replace(hosts.old,hosts.new+'/article/')+'">&lt;</a>';
+	}
+	if(next_url == null){
+	//html = html +"no previous link <br/>";
+	}else{
+	html = html +'<a href="http://'+next_url.replace(hosts.old,hosts.new+'/article/')+'">&gt;</a>';
+	}
+
+	return html;
+}
+
+
+pager = function(pages, total, count, page){
+	var offset = count;
+
+	var html = '<div class="pagination">';
+	var html = html + '<p class="pagination-info">';
+	var html = html + '<span class="pages"> page '+page+' of '+ pages +'</span>';
+	var html = html + '</p><ul>';
+	if(pages != 1){
+	for(i = 0; i < pages; i++){
+		html = html+ "<li><a href='/p/"+(i+1)+"'>"+(i+1)+"</a></li>";
+	}
+	}
+	var html = html+'</ul></div>';
+	return html;
+};
+
+Menufiy = function(menu, name, associated_slug) {
+//console.log(menu)
+pre_slug ="";
+if(associated_slug !=""){
+	pre_slug =associated_slug+"/";
+}
+
+	var html =  "<ul class='nav nav-list bs-docs-sidenav affix'>";
+	html = html + "<li class='menu-header nav-header'>"+name+"</li>";
+
+	for (var i = menu.length - 1; i >= 0; i--) {
+		if("post_count" in menu[i]){
+		html = html +  "<li class='menu-item'><a href='/"+pre_slug+menu[i].slug+"'>"+menu[i].title+" <span class='counter badge toaster'>"+menu[i].post_count+"</span></a></li>";
+		}else{
+		html = html +  "<li class='menu-item'><a href='/"+pre_slug+menu[i].slug+"'>"+menu[i].title+ "</a></li>";
+		}
+		if("children" in menu[i]){
+			html = html +  "<ul>";
+			for (var c = menu[i].children.length - 1; c >= 0; c--) {
+
+			if("post_count" in menu[i].children[c]){
+				html = html +  "<li class='menu-item'><a href='/"+pre_slug+menu[i].children[c].slug+"'>"+menu[i].children[c].title+ " <span class='counter badge toaster'>"+menu[i].children[c].post_count+"</span></a></li>";
+				} else {
+				html = html +  "<li class='menu-item'><a href='/"+pre_slug+menu[i].children[c].slug+"'>"+menu[i].children[c].title+ "</a></li>";
+				}
+			}
+
+			html = html +  "</ul>";
+		}
+
+	};
+	html = html + "</ul>";
+	return html;
+}
+
+handleHTMLOptions = function(options) {
+	if (!options) var options = {};
+	var str = '';
+	for (i in options) str += ' ' + i + '="' + options[i] + '"';
+	return str;
+}

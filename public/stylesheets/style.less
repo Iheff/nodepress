@@ -1,0 +1,28 @@
+@color1: #fff;
+@color2: #ededed;
+@color3: #f938ab;
+@padding: 20px;
+@import "bootstrap.less";
+@import "responsive.less";
+@import "http://fonts.googleapis.com/css?family=Yellowtail";
+@iconSpritePath: "/images/bootstrap/glyphicons-halflings.png";
+@iconWhiteSpritePath:     "/images/bootstrap/glyphicons-halflings-white.png";
+body{background:@color3; }
+.title{
+	font-family: 'Yellowtail', cursive;
+}
+#sitebox {background:@color1;}
+.left-col{padding-top:@padding;}
+.center-col{ background:@color2;}
+.inner{ padding:20px;}
+.right-col{padding-top:@padding;}
+#top-center{
+	.title{
+	font-size:4.8em; 
+	line-height:1.5em;
+	}	
+}
+.cb {clear:both}
+#footer-row{padding-top:30px;background:@color3;}
+.post > img{float:left;height:auto;width:288px;float:left; margin:0 .5em .5em 0;}
+.post > img.img{width:auto;display:block}

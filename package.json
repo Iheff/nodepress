@@ -1,0 +1,13 @@
+{
+    "name": "wp-front"
+  , "version": "0.0.1"
+  , "private": true
+  , "dependencies": {
+      "express": "2.5.8"
+    , "less": ">= 0.0.1"
+    , "ejs": ">= 0.0.1"
+    , "memory-cache": ">= 0.0.1"
+    , "gzippo": ">= 0.0.1"
+    
+  }
+}

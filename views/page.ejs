@@ -1,0 +1,19 @@
+<div class="post post-single post-<%= api.page.id %>">
+	<h1><%- DeEntify(api.page.title) %></h1>
+	<div class="post-meta">
+		<p> Written on...
+			<%= api.page.date %> by
+			<%= api.page.author.nickname %>
+		</p>
+	</div>
+	<div class="post-content">
+		<%- DeEntify(api.page.content) %>
+	</div>
+	<div class="post-sharing">
+		<h4 class="title">Pass it to the left</h4>
+		Like, Send, Tweet, Bookmark etc.
+	</div>
+	<div class="post-commenting">
+		Have your say
+	</div>
+</div>
