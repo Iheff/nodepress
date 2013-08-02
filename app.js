@@ -100,6 +100,7 @@ app.get('/', routes.index);
 app.get('/p/:page_number', routes.index);
 // TODO: "/:category" needs to be replaced with literals so as links to category items can include categories //
 app.get('/:category', routes.category);
+app.get('/:category/p/:page_number', routes.category);
 app.get('/article/:slug', routes.article);
 app.get('/page/:page', routes.page);
 

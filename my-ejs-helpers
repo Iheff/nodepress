@@ -53,16 +53,24 @@ getSkipLinks = function(previous_url, next_url, hosts){
 }
 
 
-pager = function(pages, total, count, page){
+pager = function(pages, total, count, page, type){
 	var offset = count;
 
+	var prefix= ""
+	if(type != ""){
+	var prefix = "/"+type
+	}
 	var html = '<div class="pagination">';
 	var html = html + '<p class="pagination-info">';
 	var html = html + '<span class="pages"> page '+page+' of '+ pages +'</span>';
 	var html = html + '</p><ul>';
 	if(pages != 1){
 	for(i = 0; i < pages; i++){
-		html = html+ "<li><a href='/p/"+(i+1)+"'>"+(i+1)+"</a></li>";
+		if(i==0){
+		html = html+ "<li><a href='"+prefix+"/'>"+(i+1)+"</a></li>";
+		} else{
+		html = html+ "<li><a href='"+prefix+"/p/"+(i+1)+"'>"+(i+1)+"</a></li>";
+		}
 	}
 	}
 	var html = html+'</ul></div>';

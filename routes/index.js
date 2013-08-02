@@ -114,7 +114,7 @@ if(cache.get('get_page_index') == null){
 					menu["id-"+id] = menu_data.pages[i];
 					}
 			};
-			cache.put('menuObject', menu_data, cache_time);
+			cache.put('menuObject', menu_data, config.cache_time);
 			//console.log("cached MenuObject");			
 			
 			cache.put('menuObjectBackup', menu_data);
@@ -219,15 +219,16 @@ exports.category = function(req, res){
 	if(req.params.page_number){
 		page_number=req.params.page_number;
 	}
-	
+
 	var slug = req.params.category;
 	
 	pagedata.menu =getCachedMenuOrBackup();
 	pagedata.page =page_number;
+	pagedata.category =slug;
 	pagedata.now =now;
 	pagedata.title = "FifthColumn";
 
-	var url = config.OG_WP+"?json=get_category_posts&slug="+slug;
+	var url = config.OG_WP+"?json=get_category_posts&slug="+slug+"&page="+page_number;
 	getCacheOrBackUpItem(url, function(response){
 		console.log('loading category data ...');
 		pagedata.api = eval("(" + response + ")");
